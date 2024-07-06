@@ -1,11 +1,5 @@
 name: textlint
-on:
-  push:
-    branches:
-      - dev/translate-jp
-  pull_request:
-    branches:
-      - dev/translate-jp
+on: push
 jobs:
   textlint:
     runs-on: ubuntu-latest
@@ -25,6 +19,8 @@ jobs:
         with:
           name: textlint-results
           path: textlint/results.xml
+      - name: dump
+        run: pwd && cat textlint/results.xml
       - name: Comment lint results on PR
         uses: ScaCap/action-surefire-report@v1
         with:
